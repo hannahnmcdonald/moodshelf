@@ -1,10 +1,19 @@
 # moodshelf
 
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-0F172A?style=for-the-badge&logo=tailwindcss&logoColor=38BDF8)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![pgvector](https://img.shields.io/badge/pgvector-336791?style=for-the-badge)
+![Drizzle](https://img.shields.io/badge/Drizzle-C5F74F?style=for-the-badge&logo=drizzle&logoColor=black)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+
 Describe the kind of book you're in the mood for — tone, pacing, setting, the vibe you can't
 quite put a genre on — and get a short list of books that actually match, each with a
 one-line explanation grounded in real data about the book, not an LLM's guess.
 
-> *"A slow-burn mystery in a remote setting where you can't trust the narrator."*
+> _"A slow-burn mystery in a remote setting where you can't trust the narrator."_
 
 This is a portfolio project built to show engineering judgment on an AI feature end to end:
 hybrid retrieval, LLM enrichment, evaluation with real numbers, and the production concerns
@@ -16,7 +25,7 @@ is wrong.
 Actively in progress. Building in phases, each one ending with something working:
 
 - [x] **Phase 1 — Basic semantic search.** Docker Postgres + pgvector, Open Library ingest,
-      Home screen. *In progress: embedding script, search endpoint, Results screen.*
+      Home screen. _In progress: embedding script, search endpoint, Results screen._
 - [ ] **Phase 2 — Better data + hybrid retrieval.** LLM enrichment, full-text search, rank
       fusion, the three filter chips.
 - [ ] **Phase 3 — Evaluation.** Fixed test query set, eval script, results table comparing
@@ -34,7 +43,7 @@ See [`docs/PLAN.md`](docs/PLAN.md) for the full architecture and phase breakdown
 enrich each description with an LLM into structured attributes (themes, tone, pacing,
 setting, tropes, content notes) → embed description + attributes into pgvector.
 
-**Per search:** embed the query → retrieve candidates by vector similarity *and* Postgres
+**Per search:** embed the query → retrieve candidates by vector similarity _and_ Postgres
 full-text search, merge with reciprocal rank fusion → apply hard filters (length, standalone
 vs. series, content notes) in SQL → re-rank the top candidates with an LLM and write a
 grounded "why it matches" line per book, using only stored attributes (never invented) →
