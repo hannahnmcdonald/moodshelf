@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Moodshelf search results</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;font-family:'Instrument Sans',system-ui,sans-serif;background:#121118;color:#F3F1F8}
+a{color:#C9B8FF}a:hover{color:#E2D8FF}
+textarea::placeholder{color:#F3F1F8;opacity:1}
+button{font-family:inherit;cursor:pointer}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1280px; box-sizing: border-box; background: #121118; color: #F3F1F8; font-family: 'Instrument Sans', system-ui, sans-serif; display: flex; flex-direction: column">
+
+<header style="display: flex; align-items: center; justify-content: space-between; padding: 24px 80px; border-bottom: 1px solid #2A2835">
+<a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #F3F1F8">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9B8FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 21h19"></path><rect x="4" y="6" width="3.5" height="15" rx="0.8"></rect><rect x="8.5" y="3.5" width="3.5" height="17.5" rx="0.8"></rect><path d="M14.2 8.2l3.2-1.1 4.3 12.6-3.2 1.1z"></path></svg>
+<span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 32px; font-weight: 400; letter-spacing: -0.5px">moodshelf</span>
+</a>
+<nav style="display: flex; align-items: center; gap: 32px; font-size: 15px; font-weight: 500">
+<a href="#" style="color: #A7A2B8; text-decoration: none; display: flex; align-items: center; gap: 8px; min-height: 44px">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5"></path><path d="m16 7 5 5-5 5"></path></svg>
+How it's built
+</a>
+</nav>
+</header>
+
+<section style="padding: 40px 80px 32px; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-direction: column; gap: 14px; background: #1C1B25; border: 1px solid #3A3650; border-radius: 20px; padding: 22px 22px 16px; box-shadow: 0 0 0 4px rgba(201,184,255,0.08)">
+<label for="q" style="font-size: 13px; font-weight: 600; color: #A7A2B8; text-transform: uppercase; letter-spacing: 1px">Your mood</label>
+<textarea id="q" rows="2" placeholder="A slow-burn mystery in a remote, isolated setting where you can't fully trust the person telling the story." style="border: none; outline: none; resize: none; background: transparent; font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1.3; color: #F3F1F8; padding: 0"></textarea>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; border-top: 1px solid #2A2835; padding-top: 14px">
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<button type="button" style="border: 1px solid #3A3650; background: transparent; color: #CFCAE0; font-size: 14px; padding: 10px 14px; border-radius: 999px; min-height: 44px">Any length</button>
+<button type="button" style="border: 1px solid #C9B8FF; background: #2B2640; color: #DCD2FF; font-size: 14px; padding: 10px 14px; border-radius: 999px; min-height: 44px">Standalones only</button>
+<button type="button" style="border: 1px solid #3A3650; background: transparent; color: #CFCAE0; font-size: 14px; padding: 10px 14px; border-radius: 999px; min-height: 44px">Content notes</button>
+</div>
+<button type="submit" style="display: flex; align-items: center; gap: 8px; border: none; background: #C9B8FF; color: #121118; font-size: 16px; font-weight: 600; padding: 12px 22px; border-radius: 999px; min-height: 48px">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+Search again
+</button>
+</div>
+</div>
+</section>
+
+<section style="padding: 8px 80px 64px; display: flex; gap: 48px; align-items: flex-start">
+
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: baseline; justify-content: space-between">
+<h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 32px">Top matches</h2>
+<span style="font-size: 14px; color: #A7A2B8">Ranked by fit, not popularity</span>
+</div>
+
+<sc-for list="{{results}}" as="book" hint-placeholder-count="4">
+<article style="display: flex; gap: 24px; background: #1C1B25; border: 1px solid #2A2835; border-radius: 18px; padding: 20px">
+<div style="width: 104px; height: 152px; flex-shrink: 0; border-radius: 4px 8px 8px 4px; background: {{book.coverBg}}; color: #FFFFFF; box-sizing: border-box; padding: 14px 12px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: inset 4px 0 0 rgba(0,0,0,0.25)">
+<span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 18px; line-height: 1.05">{{book.title}}</span>
+<span style="font-size: 10px; letter-spacing: 0.6px; text-transform: uppercase; opacity: 0.9">{{book.authorShort}}</span>
+</div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 10px; min-width: 0">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px">
+<div style="display: flex; align-items: baseline; gap: 12px">
+<span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1.1">{{book.title}}</span>
+<span style="font-size: 15px; color: #A7A2B8">{{book.author}} · {{book.year}}</span>
+</div>
+<span style="font-size: 13px; font-weight: 600; color: #FFC2A1; white-space: nowrap">#{{book.rank}}</span>
+</div>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #DDD9E8"><strong style="font-weight: 600; color: #F3F1F8">Why it matches:</strong> {{book.why}}</p>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<sc-for list="{{book.tags}}" as="tag" hint-placeholder-count="3">
+<span style="font-size: 13px; background: #2B2640; color: #DCD2FF; padding: 5px 11px; border-radius: 999px">{{tag}}</span>
+</sc-for>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; margin-top: 2px">
+<a href="#" style="font-size: 14px; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 6px; min-height: 44px">More like this
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+</a>
+<div style="display: flex; align-items: center; gap: 6px">
+<span style="font-size: 13px; color: #A7A2B8; margin-right: 4px">Good match?</span>
+<button type="button" aria-label="Good match" style="width: 44px; height: 44px; border: 1px solid #3A3650; background: transparent; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #CFCAE0">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10v11"></path><path d="M15 5.9 14 10h5.8a2 2 0 0 1 1.9 2.6l-2.3 7A2 2 0 0 1 17.5 21H4a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1h2.8a2 2 0 0 0 1.8-1.1L12 2a3.1 3.1 0 0 1 3 3.9z"></path></svg>
+</button>
+<button type="button" aria-label="Poor match" style="width: 44px; height: 44px; border: 1px solid #3A3650; background: transparent; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #CFCAE0">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 14V3"></path><path d="M9 18.1 10 14H4.2a2 2 0 0 1-1.9-2.6l2.3-7A2 2 0 0 1 6.5 3H20a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-2.8a2 2 0 0 0-1.8 1.1L12 22a3.1 3.1 0 0 1-3-3.9z"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</article>
+</sc-for>
+</div>
+
+<aside style="width: 360px; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; background: #1C1B25; border: 1px solid #2A2835; border-radius: 18px; padding: 24px; box-sizing: border-box">
+<h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 26px">How we read your mood</h2>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: #A7A2B8">We pulled these traits from your description. Remove one to broaden the search.</p>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{traits}}" as="t" hint-placeholder-count="5">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; background: #25232F; border-radius: 12px; padding: 8px 8px 8px 14px">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: #A7A2B8">{{t.label}}</span>
+<span style="font-size: 15px; font-weight: 500">{{t.value}}</span>
+</div>
+<button type="button" aria-label="Remove trait" style="width: 44px; height: 44px; border: none; background: transparent; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #A7A2B8">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"></path><path d="M18 6 6 18"></path></svg>
+</button>
+</div>
+</sc-for>
+</div>
+<button type="button" style="border: 1px dashed #4A4660; background: transparent; color: #CFCAE0; font-size: 14px; font-weight: 500; padding: 10px 14px; border-radius: 12px; min-height: 44px">+ Add a trait</button>
+</aside>
+
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1280}}'>
+class Component extends DCLogic {
+renderVals() {
+return {
+results: [
+{ rank: 1, title: 'Rebecca', author: 'Daphne du Maurier', authorShort: 'du Maurier', year: '1938', coverBg: '#2F5D50',
+why: 'A nameless narrator in a secluded Cornish estate, piecing together a past everyone else seems to know. The dread builds slowly.',
+tags: ['Isolated estate', 'Unreliable perspective', 'Gothic slow burn'] },
+{ rank: 2, title: 'We Have Always Lived in the Castle', author: 'Shirley Jackson', authorShort: 'Jackson', year: '1962', coverBg: '#7A2E4A',
+why: 'Two sisters shut away in their family home after a poisoning. The narrator’s calm voice is the unsettling part.',
+tags: ['Remote house', 'Unreliable narrator', 'Short read'] },
+{ rank: 3, title: 'The Secret History', author: 'Donna Tartt', authorShort: 'Tartt', year: '1992', coverBg: '#2C3E73',
+why: 'The narrator confesses to a death on page one, then takes his time deciding how much to tell you.',
+tags: ['Insular setting', 'Confessional narrator', 'Slow build'] },
+{ rank: 4, title: 'Shutter Island', author: 'Dennis Lehane', authorShort: 'Lehane', year: '2003', coverBg: '#7A4E22',
+why: 'A detective on an island asylum, cut off by a storm, and less sure of himself with every chapter.',
+tags: ['Island setting', 'Detective lead', 'Twist-driven'] }
+],
+traits: [
+{ label: 'Genre', value: 'Mystery' },
+{ label: 'Pacing', value: 'Slow burn' },
+{ label: 'Setting', value: 'Remote, isolated' },
+{ label: 'Narrator', value: 'Unreliable' },
+{ label: 'Series', value: 'Standalones only' }
+]
+};
+}
+}
+</script>
+</body>
+</html>
