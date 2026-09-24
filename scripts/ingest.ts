@@ -190,7 +190,7 @@ async function main() {
           openLibraryId,
           title: work.title,
           author: work.authors.map((a) => a.name).join(", "),
-          year: work.first_publish_year ?? null,
+          year: work.first_publish_year && work.first_publish_year > 0 ? work.first_publish_year : null,
           description,
           coverId: work.cover_id !== undefined ? String(work.cover_id) : null,
         })

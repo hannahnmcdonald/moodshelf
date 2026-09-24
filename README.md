@@ -88,9 +88,9 @@ TODO — Phase 5, once query caching and the `llm_calls` log have real traffic t
 
 ## Catalog size
 
-Ingest is in progress against a target of ~8,000 books, sourced from Open Library across
-fiction subjects (fantasy, mystery, romance, sci-fi, horror, and more — see
-[`scripts/ingest.ts`](scripts/ingest.ts) for the full list). Final count TODO once it finishes.
+**7,051 books** from 3,233 distinct authors, sourced from Open Library across 18 fiction
+subjects (fantasy, mystery, romance, sci-fi, horror, and more — see
+[`scripts/ingest.ts`](scripts/ingest.ts) for the full list).
 
 ## Live site
 
